@@ -16,6 +16,7 @@
  */
 package com.codelanx.navyseal;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -49,22 +50,31 @@ public class NavySeal extends JavaPlugin implements Listener {
         if (args.length < 1) {
             return true;
         }
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player) && args.length < 3) {
             return true;
         }
         if (args.length < 2) {
             this.thread.queue(new PlayerWordPair((Player) sender, args[0]));
-        } else {
-            int wpm = PlayerWordPair.DEFAULT_WPM;
-            try {
-                wpm = Integer.parseInt(args[1]);
-                if (wpm < 45) {
-                    //screw slow people
-                    wpm = 69;
-                }
-            } catch(NumberFormatException ex) {}
-            this.thread.queue(new PlayerWordPair((Player) sender, args[0], wpm));
+            return true;
         }
+        int wpm = PlayerWordPair.DEFAULT_WPM;
+        try {
+            wpm = Integer.parseInt(args[1]);
+            if (wpm < 45) {
+                //screw slow people
+                wpm = 69;
+            }
+        } catch(NumberFormatException ex) {}
+        if (args.length < 3) {
+            this.thread.queue(new PlayerWordPair((Player) sender, args[0], wpm));
+            return true;
+        }
+        Player other = Bukkit.getPlayer(args[2]);
+        if (other == null) {
+            sender.sendMessage("[NavySeal] Player not online");
+            return true;
+        }
+        this.thread.queue(new PlayerWordPair(other, args[0], wpm));
         return true;
     }
 
