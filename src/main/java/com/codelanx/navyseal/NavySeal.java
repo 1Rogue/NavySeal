@@ -47,10 +47,12 @@ public class NavySeal extends JavaPlugin implements Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (args.length < 1) {
+        if (!(sender instanceof Player) && args.length < 3) {
             return true;
         }
-        if (!(sender instanceof Player) && args.length < 3) {
+        //ned b daown hur cuz bed
+        if (args.length < 1) {
+            this.thread.queue(new PlayerWordPair((Player) sender, "mazen"));
             return true;
         }
         if (args.length < 2) {
