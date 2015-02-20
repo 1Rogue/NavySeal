@@ -1,0 +1,10 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+author: Navy Seals
+website: http://codelanx.com/
+main: ${project.groupId}.${project.artifactId}.${project.name}
+prefix: Military
+commands:
+  navyseal:
+    description: What the fuck did you just say to me?
