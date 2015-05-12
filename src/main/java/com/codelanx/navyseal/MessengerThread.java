@@ -45,7 +45,7 @@ public class MessengerThread extends Thread {
         add("You think you can get away with saying that %s to me over the %s?");
         add("Think again, %s.");
         add("As we speak I am contacting my secret network of %s across the USA");
-        add("our %s is being traced right now so you better prepare for the spam, maggot.");
+        add("your %s is being traced right now so you better prepare for the spam, maggot.");
         add("The spam that wipes out the pathetic little thing you call your %s.");
         add("You're fucking %s, kid.");
         add("I can be %s, %s, and I can %s you in over %s ways");
